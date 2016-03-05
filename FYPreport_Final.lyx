@@ -1,0 +1,1148 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 0
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Automatic tuning of deep neural networks with applications
+\end_layout
+
+\begin_layout Author
+Submitted by 
+\end_layout
+
+\begin_layout Author
+Yin Yumeng
+\end_layout
+
+\begin_layout Author
+Supervisor : Prof.
+ Chua Tat-Seng
+\end_layout
+
+\begin_layout Author
+Mr.
+ Fu Jie
+\end_layout
+
+\begin_layout Author
+In partial fulfilment of the 
+\end_layout
+
+\begin_layout Author
+Requirements for the Degree of 
+\end_layout
+
+\begin_layout Author
+Bachelor of Engineering (Computer Engineering)
+\end_layout
+
+\begin_layout Author
+National University of Singapore 
+\end_layout
+
+\begin_layout Abstract
+Despite decades of researches into hyper-parameter optimization, the recent
+ idea of optimizing hyper-parameter of machine learning algorithms has not
+ achieved so much visible success until recently.
+ Automatically hyper-parameter tuning on several small-scale datasets were
+ applied with several optimization strategies.
+ One of them is the Bayesian optimization, which was proved to be supervisor
+ in recent studies.
+ 
+\end_layout
+
+\begin_layout Abstract
+However, to apply the automatic hyper-parameter tuning effectively to tackle
+ real-world big data sets remains to be challenging.
+ Because of the many issues such as the noisy and meaningless data in real-case
+ data collection as well as the huge computational resources required, thus
+ resulting in long training and testing time.
+ Thus this FYP project is commissioned to validate the effectiveness of
+ automatic hyper-parameter tuning cases to real-word datasets.
+ Thus I participated in a series of machine learning competitions organized
+ by Kaggle.
+ In order to make Bayesian optimization really scalable and practical, I
+ will apply various batch Bayesian optimization and transfer learning based
+ ones in next semester.
+ 
+\end_layout
+
+\begin_layout Abstract
+(todo! modify)
+\end_layout
+
+\begin_layout Abstract
+Bayesian optimization is an effective methodology for the global optimization
+ of functions with expensive evaluations.
+ It relies on querying a distribution over functions defined by a relatively
+ cheap surrogate model.
+ An accurate model for this distribution over functions is critical to the
+ effectiveness of the approach, and is typically fit using Gaussian processes
+ (GPs).
+ However, since GPs scale cubically with the number of observations, it
+ has been challenging to handle objec- tives whose optimization requires
+ many evalua- tions, and as such, massively parallelizing the optimization.
+ In this work, we explore the use of neural net- works as an alternative
+ to GPs to model distributions over functions.
+ We show that performing adaptive basis function regression with a neural
+ network as the parametric form performs competitively with state-of-the-art
+ GP-based approaches, but scales linearly with the number of data rather
+ than cubically.
+ This allows us to achieve a previously intractable degree of paral- lelism,
+ which we apply to large scale hyperparameter optimization, rapidly finding
+ competitive models on benchmark object recognition tasks using convolutional
+ networks, and image caption generation using neural language models.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{scalable_bayesian}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Subject Descriptors: Keywords: Implementation Software and Hardwares: 
+\end_layout
+
+\begin_layout Abstract
+The objective of the project is to explore the bayesian optimization fitted
+ with bayesian neural network.
+ In addition, I involved in the implmention of hyper-parameter server for
+ the gradient way of hyperparamter tuning.
+\end_layout
+
+\begin_layout Part*
+Acknowledge
+\end_layout
+
+\begin_layout Title
+Tables of contents
+\end_layout
+
+\begin_layout Section
+introduction
+\end_layout
+
+\begin_layout Section
+literature review
+\end_layout
+
+\begin_layout Subsection
+Neural Network
+\end_layout
+
+\begin_layout Standard
+(todo: modify)Deep Learning is an approach to artificial intelligence.
+ Specifically, it is a type of machine learning, a technique that allows
+ computer systems to improve with experience and data.
+ According to the authors of this book, machine learning is the only viable
+ approach to building AI systems that can operate in complicated, real-world
+ environments.
+ Deep learning is a particular kind of machine learning that achieves great
+ power and flexibility by learning to represent the world as a nested hierarchy
+ of concepts and representations, with each concept defined in relation
+ to simpler concepts, and more abstract representations computed in terms
+ of less abstract ones.
+ Fig.
+ 1.4 illustrates the relationship between these different AI disciplines.
+ Fig.
+ 1.5 gives a high-level schematic of how each works
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+.
+ (bishop)
+\end_layout
+
+\begin_layout Standard
+(modified:)
+\end_layout
+
+\begin_layout Standard
+Have its origins in attempts to find mathematical representations of information
+ processing in biological systems
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{WuXiping1991}
+\end_layout
+
+\end_inset
+
+, artificial neural networks have aroused so much interests in recent years
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{NeuralNetworkASystematicIntroduction}
+\end_layout
+
+\end_inset
+
+.
+ A neural network attempts to model like how brain performs a specific task
+ or function 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Haykin1994}
+\end_layout
+
+\end_inset
+
+.
+ Artificial neural network perform computations through a process of learning
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Haykin1994}
+\end_layout
+
+\end_inset
+
+.
+ Messive neurons which represent simple computing cells are emploied in
+ neural networks to achieve good performance.
+ The proceduce called learning argorithm was used to modify the weights
+ of the network, which will help eventually achieve a desired designed neural
+ network model
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Haykin1994}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A neural network achieve its computing power through two main points, ability
+ to learn and generalize and massively distribued structure.
+ 
+\end_layout
+
+\begin_layout Standard
+(todo: modify)
+\end_layout
+
+\begin_layout Standard
+Generalization refers to the neural network producing reasonable outputs
+ for inputs not encountered during training(learning).
+ These two information-processing capabilities make it possible for neural
+ networks to solve complex(large-scale) problems that are currently intractable.
+ In practice, however, neural networks cannot provide the solution by working
+ individually.
+ Rather, they need to be integrated into a consist system engineering approach.
+ Specially, a complex problem of interest is decomposed into a number of
+ relatively simple tasks, and neural networks are assigned a subset of tasks
+ that match their inherent capabilities.
+ It is important to recognize, however, that we have a long way to go (if
+ ever) before we can build a computer architecture that mimics a human brain.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Haykin1994}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Multi-Layer Perception
+\end_layout
+
+\begin_layout Standard
+(todo: modify)
+\end_layout
+
+\begin_layout Standard
+MLP havs been proven to be of grest practical value in neural networks.
+ MLP can be described a series of functional transforms.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A multulayer perception(MLP) is a feedforward artifical neural network model
+ that maps sets of input data onto a set of appropriate outputs.
+ An MLP consists of multiple layers of nodes in a directed graph, with each
+ layer fully connected to he next one.
+ Except for the imput nodes, each node is a neuron( or percessing element)
+ with a nonlinear activation function.
+ MLP utilized a supervised learning technique called backpropagation for
+ training the network
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Rosenblatt1961}
+\end_layout
+
+\end_inset
+
+.
+ MLP is a modification of the standard linear perceptron and can distinguish
+ data that are not linearly separable
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Cybenko1989}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The linear model for regression and classification are based on linear combinati
+ons of fixed nonlinear basis functions 
+\begin_inset Formula $ø_{j}(x)$
+\end_inset
+
+ and take the form
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+y(x,w)=f(\sum_{j=1}^{M}w_{j}ø_{j}(x))
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $f(\text{·})$
+\end_inset
+
+ is a nonlinear activation function in the case of classification and is
+ the identify in the case of regression.
+ Our goal is to extand this model by making the basis function 
+\begin_inset Formula $ø_{j}(x)$
+\end_inset
+
+ depend on parameters and then to allow these parameters to be adjusted,
+ along with the coefficients 
+\begin_inset Formula $\{w_{j}\}$
+\end_inset
+
+, during training.
+ There are, of course, many ways to construct parametric nonlinear basis
+ functions.
+ Neural netwosks use basis functions tat follow the same form as 
+\begin_inset Formula $(1)$
+\end_inset
+
+, so that each basis function is itself a nonlinear function of a linear
+ combination of the inputs, where the coefficients in the linear combination
+ are adaptive parameters.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This leads to the basic neural network model, which can be described a series
+ of functional transforms.
+ first we construct 
+\begin_inset Formula $M$
+\end_inset
+
+ linear combinations of the input variables 
+\begin_inset Formula $x_{1},...,x_{D}$
+\end_inset
+
+ in the form
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+a_{j}=\sum_{i=1}^{D}w_{ji}^{(1)}x_{i}+w_{j0}^{(1)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $j=1,...,M$
+\end_inset
+
+, and the superscript 
+\begin_inset Formula $(1)$
+\end_inset
+
+ indicate that the corresponding parameters are in the ifrst 'layer' of
+ the network.
+ We shall refer to the parameters 
+\begin_inset Formula $w_{ji}^{(1)}$
+\end_inset
+
+ as 
+\begin_inset Formula $weights$
+\end_inset
+
+ and the parameters 
+\begin_inset Formula $w_{jo}^{(1)}$
+\end_inset
+
+ as 
+\begin_inset Formula $biases$
+\end_inset
+
+.
+ The quantities 
+\begin_inset Formula $a_{j}$
+\end_inset
+
+ are known as 
+\begin_inset Formula $activations$
+\end_inset
+
+.
+ Each of them is then tranaformed using a differentiable, nonlinear 
+\begin_inset Formula $activation$
+\end_inset
+
+
+\begin_inset Formula $function$
+\end_inset
+
+
+\begin_inset Formula $f(\text{·})$
+\end_inset
+
+ to give 
+\begin_inset Formula 
+\begin{equation}
+z_{j}=h(a_{j})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These quantities correspond to the outputs of the basis functions in (1)
+ that, in the context of neural networks, are called 
+\begin_inset Formula $hidden$
+\end_inset
+
+
+\begin_inset Formula $units.$
+\end_inset
+
+ The nonlinear functions 
+\begin_inset Formula $h(\text{·})$
+\end_inset
+
+ are generally chosen to be 
+\begin_inset Formula $sigmoidal$
+\end_inset
+
+ functions such as the logistic sigmoid or the 
+\begin_inset Formula $'tanh'$
+\end_inset
+
+ function.
+ These values are again linearly combined to give output unit activations
+\begin_inset Formula 
+\begin{equation}
+a_{j}=\sum_{i=1}^{M}w_{kj}^{(2)}Z_{j}+w_{k0}^{(2)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\begin_inset Formula $k=1,...,K$
+\end_inset
+
+, and 
+\begin_inset Formula $K$
+\end_inset
+
+ is the total number of outputs.
+ This transformation corresponds to the second layer of the network.
+ The two layer MLP is shown in the Figure 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/yumengyin/Pictures/com.tencent.ScreenCapture/QQ20160229-1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The input, hidden, and output variables are represented by nodes, and the
+ weight parameters are represented by links between the nodes, in which
+ the bias parameters are denoted by links coming from additional input and
+ hidden variables 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+ and
+\begin_inset Formula $z_{0}$
+\end_inset
+
+ .
+ Arrows denote the direction of information flow through the network during
+ forward propagation.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Convolutional Network
+\end_layout
+
+\begin_layout Subsection
+Automatic tuning of Neural Networks
+\end_layout
+
+\begin_layout Subsubsection
+Hyperparameters
+\end_layout
+
+\begin_layout Standard
+(todo: modify)
+\end_layout
+
+\begin_layout Standard
+Deep learning have several settings that we can use to control the behaviour
+ of the learning algorithm.
+ These settings are called hyperparameters.
+ The value of hyperparameters are not adapted by the learning algorithm
+ itself(though we can design a nested learning procedure where one learning
+ argorithm learns the best hyperparameters for another learning algorithm)
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Goodfellow-et-al-2016-Book}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These parameters can be paramaters that control model complexity, such as
+ 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+ penalities, or parameters that specify the learning proceduce itself, such
+ as learning rate, dropout rate and momentum.
+ Choosing the best hyperparameters is both crucial and frustratingly difficult.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Maclaurin2015}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hyperparameter optimization or model selection is the problem of choosing
+ a set of hyperparameters, usually with the goal of optimizing a measure
+ of the algorithm's performance on an independent data set.
+ Often cross-validation is used to estimate this generalization performance.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{JamesBergstra2012}
+\end_layout
+
+\end_inset
+
+ Hyperparameter optimization contrasts with actual learning problems, which
+ are also often cast as optimization problems, but optimize a loss function
+ on the training set alone.
+ In effect, learning algorithms learn parameters that model/reconstruct
+ their inputs well, while hyperparameter optimization is to ensure the model
+ does not overfit its data by tuning, e.g., regularization.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{hyperpara2016}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The use of machine learning algorithms frequently involves careful tuning
+ of learning parameters and model hyperparameters.
+ Unfortunately, this tuning is of- ten a “black art” requiring expert experience
+, rules of thumb, or sometimes brute- force search.
+ There is therefore great appeal for automatic approaches that can optimize
+ the performance of any given learning algorithm to the problem at hand.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{scalable_bayesian}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Bayesian Optimization
+\end_layout
+
+\begin_layout Standard
+(todo: need modification)
+\end_layout
+
+\begin_layout Standard
+Bayesian optimization is a methodology for the global optimization of noisy
+ black-box functions.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{scalable_bayesian}
+\end_layout
+
+\end_inset
+
+ Applied to hyperparameter optimization, Bayesian optimization consists
+ of developing a statistical model of the function from hyperparameter values
+ to the objective evaluated on a validation set.
+ Intuitively, the methodology assumes that there is some smooth but noisy
+ function that acts as a mapping from hyperparameters to the objective.
+ In Bayesian optimization, one aims to gather observations in such a manner
+ as to evaluate the machine learning model the least number of times while
+ revealing as much information as possible about this function and, in particula
+r, the location of the optimum.
+ Bayesian optimization relies on assuming a very general prior over functions
+ which when combined with observed hyperparameter values and corresponding
+ outputs yields a distribution over functions.
+ The methodology proceeds by iteratively picking hyperparameters to observe
+ (experiments to run) in a manner that trades off exploration (hyperparameters
+ for which the outcome is most uncertain) and exploitation (hyperparameters
+ which are expected to have a good outcome).
+ In practice, Bayesian optimization has been shown
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{scalable_bayesian}
+\end_layout
+
+\end_inset
+
+ to obtain better results in fewer experiments than grid search and random
+ search, due to the ability to reason about the quality of experiments before
+ they are run.
+\end_layout
+
+\begin_layout Subsubsection
+Gaussian Process
+\end_layout
+
+\begin_layout Standard
+http://www.gaussianprocess.org/
+\end_layout
+
+\begin_layout Standard
+(todo: need modification)
+\end_layout
+
+\begin_layout Standard
+In this work, we consider this problem through the framework of Bayesian
+ optimization, in which a learning algorithm’s generalization performance
+ is modeled as a sample from a Gaussian process (GP).
+ We show that certain choices for the nature of the GP, such as the type
+ of kernel and the treatment of its hyperparameters, can play a crucial
+ role in obtaining a good optimizer that can achieve expert-level performance.
+ We describe new algorithms that take into account the variable cost (duration)
+ of learning algorithm experiments and that can leverage the presence of
+ multiple cores for parallel experimentation.
+ We show that these proposed algorithms improve on previous automatic procedures
+ and can reach or surpass human expert-level optimization for many algorithms
+ including latent Dirichlet allocation, structured SVMs and convolutional
+ neural networks.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{scalable_bayesian}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A gaussian process is a statistical process is a statical distribution where
+ observations occur in a continuous domian, e.g.
+ time or space.
+ In a gaussian process, every point in some continuous input space is associated
+ with a normally distributed (wikipedia)
+\end_layout
+
+\begin_layout Standard
+The idea of Gaussian process modelling is, without parameterizing 
+\begin_inset Formula $y(x)$
+\end_inset
+
+, to place a prior 
+\begin_inset Formula $P(y(x))$
+\end_inset
+
+ directly on the space of functions.
+ The simplest type of prior over function is called a Gaussian process.
+ It can be thought of as the generation of a Gaussian distribution over
+ a finite vector space to a function space of infinita dimension.
+ Just as a Gaussian distribution is fully specified by its mean and coveriance
+ matrix, a Gaussian process is specified by a mean and covarance function.
+
+ Here, the mean is a function of 
+\begin_inset Formula $x$
+\end_inset
+
+
+\lang english
+(which we will often take to be the zero function), and the covarance is
+ a function 
+\begin_inset Formula $C(x,x')$
+\end_inset
+
+ which expresses the expected covariance between the value of the function
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ at the points 
+\begin_inset Formula $x$
+\end_inset
+
+and 
+\begin_inset Formula $x'$
+\end_inset
+
+.
+ The actual function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+in any one data modelling problem is assumed to be a single sample from
+ this Gaussian distribution.
+ Gaussian processes are already well established models for various spatial
+ and temporal peoblems
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{MacKay1998}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Bayesian Neural Network
+\end_layout
+
+\begin_layout Standard
+The application of the Bayesian learning paradigm to neural networks results
+ in a flexible and powerful nonlinear modelling framework that can be used
+ for regression, density estimation, prediction and classification.
+ Within this framework, all sources of uncertainty are expressed and measured
+ by probabilities.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Freitas1999}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The bayesian neural networks use maximum likelihood to determine the network
+ parameters(weights and biases).
+ Regularized maximum likelihood can be interpreted as a MAP (maximum posterior)
+ approach in which the regulizarizer can be viewed as the logarithm of a
+ prior parameter distribution will be nonconvex, corresponding to the multiple
+ local minima of the error function.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Bishop2006}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Titterington2004}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Acquisition Function
+\end_layout
+
+\begin_layout Subsection
+Gradient-based Hyperparameter Optimization through Reversible Learning
+\end_layout
+
+\begin_layout Section
+Study of the Existing Package
+\end_layout
+
+\begin_layout Subsection
+GpyOpt
+\end_layout
+
+\begin_layout Section
+Implementation
+\end_layout
+
+\begin_layout Section
+Use bayesian neural network for bayesian optimization
+\end_layout
+
+\begin_layout Standard
+Compare with the neural network, gaussian process.
+\end_layout
+
+\begin_layout Section
+Hyperparameter easy to transform
+\end_layout
+
+\begin_layout Standard
+similiarity of hyperparameter, hyperparameter easy to transform, --> the
+ experiment result of the first semester.
+\end_layout
+
+\begin_layout Standard
+for bayesian optimization with bayesian neural network, you don't need to
+ choose kenel for it like Gaussian Process.
+ It will learn the kernel itself.
+ In return, it will take longer time to get the similar result like bayesian
+ optimization fitted with Gaussian Process.
+\end_layout
+
+\begin_layout Standard
+bayesian neural network: distribution: probabilitist 
+\end_layout
+
+\begin_layout Standard
+neural network: point: determinstic
+\end_layout
+
+\begin_layout Title
+Appendices
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "citation"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Back hard cover
+\end_layout
+
+\begin_layout Standard
+http://www.douban.com/group/topic/29552231/
+\end_layout
+
+\begin_layout Standard
+http://elyxer.nongnu.org/lyx/Math.html
+\end_layout
+
+\end_body
+\end_document

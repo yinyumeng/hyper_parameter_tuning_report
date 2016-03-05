@@ -1,0 +1,139 @@
+% Encoding: UTF-8
+
+@Article{Bergstra2011,
+  author =       {Bergstra, James; Bardenet, Remi; Bengio, Yoshua; Kegl, Balazs},
+  title =        {Algorithms for hyper-parameter optimization},
+  journaltitle = {Advances in Neural Information Processing Systems},
+  year =         {2011}
+}
+
+@Book{Bishop2006,
+  title =     {Pattern Recognition and Machine Learning (Information Science and Statistics)},
+  publisher = {Springer-Verlag New York, Inc.},
+  year =      {2006},
+  author =    {Bishop, Christopher M.},
+  editor =    {M. Jordan J. Kleinberg B. Scho¨lkopf}
+}
+
+@Article{Cybenko1989,
+  author =  {Cybenko, G.},
+  title =   {Approximation by superpositions of a sigmoidal function},
+  journal = {Mathematics of Control, Signals and Systems},
+  year =    {1989}
+}
+
+@TechReport{Freitas1999,
+  author =      {João F. G. De Freitas},
+  title =       {Bayesian Methods for Neural Networks},
+  institution = {Trinity College, University of Cambridge and Cambridge University Engineering Department.},
+  year =        {1999}
+}
+
+@Unpublished{Goodfellow-et-al-2016-Book,
+  author = {Ian Goodfellow; Yoshua Bengio; and Aaron Courville},
+  title =  {Deep Learning},
+  note =   {Book in preparation for MIT Press}
+}
+
+@Book{Haykin1994,
+  title =     {Neural Networks: A Comprehensive Foundation},
+  publisher = {Prentice Hall PTR},
+  year =      {1994},
+  author =    {Haykin, Simon}
+}
+
+@TechReport{HsuChih-Wei2003,
+  author =      {Hsu Chih-Wei, Chang Chih-Chung, Lin Chih-Jen},
+  title =       {A Practical Guide to Support Vector Classification},
+  institution = {Department of Computer Science, National Taiwan University},
+  year =        {2003}
+}
+
+@Misc{hyperpara2016,
+  author = {Wikipedia},
+  title =  {Hyperparameter optimization Wikipedia, The Free Encyclopedia,},
+  year =   {2016},
+  url =    {https://en.wikipedia.org/w/index.php?title=Hyperparameter_optimization&oldid=705078252}
+}
+
+@Article{JamesBergstra2012,
+  author =       {James Bergstra, Yoshua Bengio},
+  title =        {Random Search for Hyper-Parameter Optimization},
+  journaltitle = {Journal of Machine Learning Research},
+  year =         {2012},
+  date =         {2/12}
+}
+
+@Article{MacKay1998,
+  author =       {D. J. C. MacKay},
+  title =        {Introduction to Gaussian processes},
+  journaltitle = {Neural networks and machine learning, NATO ASI Series},
+  year =         {1998},
+  pages =        {133-165}
+}
+
+@Article{Maclaurin2015,
+  author =       {Maclaurin Dougal; Duvenaud David; Adams Ryan P},
+  title =        {Gradient-based Hyperparameter Optimization through Reversible Learning},
+  journaltitle = {ArXiv e-prints},
+  year =         {2015},
+  date =         {feb}
+}
+
+@Article{NeuralNetworkASystematicIntroduction,
+  author =  {Song, Qing},
+  title =   {Book review: Neural Networks: Systematic Introduction,, Raul Rojas, Springer-Verlag, New York, NY, 1995, 502 pp. ISBN 3-540-60505-3},
+  journal = {International Journal of Robust and Nonlinear Control},
+  year =    {1998}
+}
+
+@Book{RasmussenWilliams2005,
+  author =    {Rasmussen, Carl Edward and Williams, Christopher K. I.},
+  title =     {Gaussian Processes for Machine Learning (Adaptive Computation and Machine Learning)},
+  year =      {2005},
+  publisher = {The MIT Press},
+  isbn =      {026218253X}
+}
+
+@Article{Rosenblatt1961,
+  author =  {Rosenblatt, Frank.x},
+  title =   {Perceptrons and the Theory of Brain Mechanisms},
+  journal = {Principles of Neurodynamics},
+  year =    {1961}
+}
+
+@InProceedings{scalable_bayesian,
+  author =    {Snoek, Jasper and Rippel, Oren and Swersky, Kevin and Kiros, Ryan and Satish, Nadathur and Sundaram, Narayanan and Patwary, Mostofa and Prabhat, Mr and Adams, Ryan},
+  title =     {Scalable Bayesian Optimization Using Deep Neural Networks},
+  booktitle = {Proceedings of the 32nd International Conference on Machine Learning (ICML-15)},
+  year =      {2015},
+  editor =    {David Blei and Francis Bach},
+  publisher = {JMLR Workshop and Conference Proceedings}
+}
+
+@Article{Snoek2012,
+  author =       {Snoek, Jasper; Larochelle, Hugo; Adams, Ryan},
+  title =        {Practical Bayesian Optimization of Machine Learning Algorithms},
+  journaltitle = {Advances in Neural Information Processing Systems},
+  year =         {2012}
+}
+
+@Article{Thornton2013,
+  author =       {Thornton, Chris; Hutter, Frank; Hoos, Holger; Leyton-Brown, Kevin},
+  title =        {Auto-WEKA: Combined selection and hyperparameter optimization of classification algorithms},
+  journaltitle = {Knowledge discovery and data mining},
+  year =         {2013}
+}
+
+@Article{WuXiping1991,
+  author = {Wu Xiping, Westervelt, James D},
+  title =  {Engineering Applications of Neural Computing: A State-of-the-Art Survey},
+  year =   {1991}
+}
+
+@Article{,
+  author =       {D. M. Titterington},
+  title =        {Bayesian Methods for Neural Networks and Related Models},
+  journaltitle = {Statistical Science},
+  date =         {2004, Vol. 19, No. 1, 128–139}
+}
